@@ -1,8 +1,3 @@
-const sendMe = (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify(req.user));
-}; 
-
 const sendAllUsers = (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(req.usersArray));
@@ -11,12 +6,12 @@ const sendAllUsers = (req, res) => {
 const sendUserCreated = (req, res) => {
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(req.user));
-}; 
+};
 
-const sendUserById = (req, res) => {
+const sendUserByID = (req, res) => {
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(req.user));
-}; 
+}
 
 const sendUserUpdated = (req, res) => {
   res.setHeader("Content-Type", "application/json");
@@ -24,16 +19,19 @@ const sendUserUpdated = (req, res) => {
 };
 
 const sendUserDeleted = (req, res) => {
-res.setHeader("Content-Type", "application/json");
-res.end(JSON.stringify(req.user));
+  res.setHeader("Content-Type", "application/json");
+  res.end(JSON.stringify(req.user));
 };
 
-
-module.exports = 
-{sendAllUsers,
+const sendMe = (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.end(JSON.stringify(req.user));
+};
+module.exports = {
+  sendAllUsers,
   sendUserCreated,
-  sendUserById,
+  sendUserByID,
   sendUserUpdated,
   sendUserDeleted,
-  sendMe,
-}
+  sendMe
+} 

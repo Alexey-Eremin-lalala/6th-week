@@ -1,36 +1,42 @@
 
-const usersRouter = require('express').Router();
-
-
-const {findAllUsers, createUser, findUserById, updateUser, deleteUser, checkEmptyNameAndEmail, checkIsUserExists, checkEmptyNameAndEmailAndPassword, hashPassword} = require('../middlewares/users');
-const {sendAllUsers, sendUserCreated, sendUserById, sendUserUpdated, sendUserDeleted, sendMe} = require('../controllers/users');
-const { checkAuth } = require('../middlewares/auth');
-
-
-usersRouter.get('/users', findAllUsers, sendAllUsers);
-
-usersRouter.post(
-  "/users",
-  findAllUsers,
-  checkIsUserExists,
-  checkEmptyNameAndEmailAndPassword,
-  checkAuth,
-  hashPassword,
-  createUser,
-  sendUserCreated
-); 
- usersRouter.get('/users/:id', findUserById, sendUserById);
-
- usersRouter.get("/me", checkAuth, sendMe); 
-
- usersRouter.put(
-    "/users/:id",
-    checkEmptyNameAndEmail,
+  const usersRouter = require('express').Router();
+  
+  const {findAllUsers} = require('../middlewares/users');
+  const {sendAllUsers} = require('../controllers/users');
+  const {createUser} = require('../middlewares/users')
+  const {sendUserCreated} = require('../controllers/users')
+  const {findUserById} = require('../middlewares/users')
+  const {sendUserByID} = require('../controllers/users')
+  const {updateUser} = require('../middlewares/users')
+  const {sendUserUpdated} = require('../controllers/users');
+const {deleteUser} = require('../middlewares/users');
+const {sendUserDeleted} = require('../controllers/users');
+const {checkIsUserExists} = require("../middlewares/users")
+const {checkEmptyNameAndEmailAndPassword} = require("../middlewares/users")
+const {checkEmptyNameAndEmail} = require("../middlewares/users");
+const {hashPassword} = require('../middlewares/users');
+const {checkAuth} = require('../middlewares/auth');
+const {sendMe} = require('../controllers/users');
+  usersRouter.get('/users', findAllUsers, sendAllUsers);
+  usersRouter.post(
+    "/users",
+    findAllUsers,
+    checkIsUserExists,
+    checkEmptyNameAndEmailAndPassword,
     checkAuth,
-    updateUser,
-    sendUserUpdated
+    hashPassword,
+    createUser,
+    sendUserCreated
   ); 
-
-  usersRouter.delete("/users/:id", checkAuth, deleteUser, sendUserDeleted);
-
-module.exports = usersRouter;
+usersRouter.get("/users/:id", findUserById, sendUserByID);
+usersRouter.put(
+  "/users/:id",
+  checkEmptyNameAndEmail,
+  checkAuth,
+  updateUser,
+  sendUserUpdated
+); 
+usersRouter.get("/me", checkAuth, sendMe); 
+usersRouter.delete("/users/:id", checkAuth, deleteUser, sendUserDeleted);
+  module.exports = usersRouter;
+  
