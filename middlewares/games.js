@@ -1,20 +1,17 @@
 const games = require("../models/game");
-const user = require("../models/user");
 
 const findAllGames = async (req, res, next) => {
   if (req.query["categories.name"]) {
-    req.gamesArray = await games.findGameByCategory(req.query["categories.name"]);
+    req.gamesArray = await games.findGameByCategory(
+      req.query["categories.name"]
+    );
     next();
     return;
   }
-  console.log("GET /games");
-  req.gamesArray = await games
-    .find({})
-    .populate("categories")
-    .populate({
-      path: "users",
-      select: "-password"
-    });
+  req.gamesArray = await games.find({}).populate("categories").populate({
+    path: "users",
+    select: "-password",
+  });
   next();
 };
 
@@ -64,7 +61,7 @@ const deleteGame = async (req, res, next) => {
 };
 
 const checkEmptyFields = async (req, res, next) => {
-  if(req.isVoteRequest) {
+  if (req.isVoteRequest) {
     next();
     return;
   }
@@ -76,26 +73,28 @@ const checkEmptyFields = async (req, res, next) => {
     !req.body.developer
   ) {
     res.setHeader("Content-Type", "application/json");
-        res.status(400).send(JSON.stringify({ message: "Заполни все поля" }));
+    res.status(400).send(JSON.stringify({ message: "Заполни все поля" }));
   } else {
     next();
   }
-}; 
+};
 
 const checkIfCategoriesAvaliable = async (req, res, next) => {
-  if(req.isVoteRequest) {
+  if (req.isVoteRequest) {
     next();
     return;
-  } 
-if (!req.body.categories || req.body.categories.length === 0) {
-  res.setHeader("Content-Type", "application/json");
-      res.status(400).send(JSON.stringify({ message: "Выбери хотя бы одну категорию" }));
-} else {
-  next();
-}
+  }
+  if (!req.body.categories || req.body.categories.length === 0) {
+    res.setHeader("Content-Type", "application/json");
+    res
+      .status(400)
+      .send(JSON.stringify({ message: "Выбери хотя бы одну категорию" }));
+  } else {
+    next();
+  }
 };
+
 const checkIfUsersAreSafe = async (req, res, next) => {
-  // Проверим, есть ли users в теле запроса
   if (!req.body.users) {
     next();
     return;
@@ -105,28 +104,37 @@ const checkIfUsersAreSafe = async (req, res, next) => {
     return;
   } else {
     res.setHeader("Content-Type", "application/json");
-    res.status(400).send(JSON.stringify({ message: "Нельзя удалять пользователей или добавлять больше одного пользователя" }));
+    res.status(400).send(
+      JSON.stringify({
+        message:
+          "Нельзя удалять пользователей или добавлять больше одного пользователя",
+      })
+    );
   }
 };
+
 const checkIsGameExists = async (req, res, next) => {
-  console.log(req.gamesArray)
   const isInArray = req.gamesArray.find((game) => {
     return req.body.title === game.title;
   });
   if (isInArray) {
     res.setHeader("Content-Type", "application/json");
-    res.status(400).send(JSON.stringify({ message: "Игра с таким названием уже существует" }));
+    res
+      .status(400)
+      .send(
+        JSON.stringify({ message: "Игра с таким названием уже существует" })
+      );
   } else {
     next();
   }
 };
 
 const checkIsVoteRequest = async (req, res, next) => {
-if (Object.keys(req.body).length === 1 && req.body.users) {
-  req.isVoteRequest = true;
-}
-next();
-}; 
+  if (Object.keys(req.body).length === 1 && req.body.users) {
+    req.isVoteRequest = true;
+  }
+  next();
+};
 
 module.exports = {
   findAllGames,
@@ -138,6 +146,5 @@ module.exports = {
   checkIfCategoriesAvaliable,
   checkIfUsersAreSafe,
   checkIsGameExists,
-  checkIsVoteRequest
-}
-
+  checkIsVoteRequest,
+};
