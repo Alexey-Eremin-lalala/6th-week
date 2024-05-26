@@ -1,0 +1,54 @@
+[{
+  "_id": {
+    "$oid": "6606b19ef99cd7a67132aaf6"
+  },
+  "username": "aski",
+  "email": "aski@example.com",
+  "password": "$2a$10$LgqW2yoQxJ6nDBaS8nfM3urShNcn0m95wgyES2lqLw2kXicCHyfmC",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6606b3e0ba5b4c3fa4be6dd5"
+  },
+  "username": "Sobaka",
+  "email": "jav@example.com",
+  "password": "$2a$10$g6PgxfOv1p0xVAi1FCckRuolYB5ImwazvVVhNVisaoxDI9NuAE8oi",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "664856428fb6e10fba0a2c44"
+  },
+  "username": "Alex",
+  "email": "alekseileha@gmail.com",
+  "password": "$2a$10$h6CsSkA77KawzX7k1g4sO.mUdVfR018o.LMxgRORVVS25KKZRzpE2",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66521fed7b84d5d6a60e427a"
+  },
+  "username": "Чертила",
+  "email": "aaaaaa@a.a",
+  "password": "$2a$10$hk4nwWM63WW36lSY44LRw.L7Co3F/yY..C6Q9NWP9/UKg1Goi.uoC",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66522f90e59a81685226a732"
+  },
+  "username": "a",
+  "email": "a@a.a",
+  "password": "$2a$10$SQApto.VJ1YfNb6jgW85/udZGNrReOtpgNT4jWc4sJIRDXH65hhZe",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6652321765369770e07df9fb"
+  },
+  "username": "папуас",
+  "email": "alek@alek.ru",
+  "password": "$2a$10$iLIiGqa0NeV4qkFeqcbfpOqF6RxleYyP4HOAh0uU.n6Mf3QEWcSJO",
+  "__v": 0
+}]
